@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<title>Movie Recommendation System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+       .infoDiv {
+        /*background-color: rgba(255, 0, 0, 0.6);*/
+        font-Size: 40;
+    }
+        body {
+        background: url("{%  static 'MovieTheater.jpg' %}") no-repeat center fixed;
+        background-size: cover;
+        }
+
+        .introSpan{
+        margin-left: 25%
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        .column {
+        color:white;
+        float: left;
+        width: 30%;
+        background-color:00FFFFFF;
+        font-size:large;
+        }
+        h1 {
+            color: black;
+            font-size: 150;
+            height: 30px;
+            text-align: center;
+            }
+        input {
+                width: 80%;
+                padding: 18px 22px;
+                border: yes;
+                border-radius: 5px;
+                color: black;
+                text-align: center;
+                background-color: rgb(240,240,240);
+                font-size: 30px; 
+            }
+        button{
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            border-radius: 5px;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            }
+         a{
+              color: white;
+              font-family: "Montserrat", sans-serif;
+              font-weight:500;
+              font-size:20px;
+              text-decoration: yes;
+              text-align: center;
+         }
+         header{
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           padding: 10px 40%;
+           background-color:#A52A2A;
+           text-align: center;
+           font-size:14px;
+          }
+          footer{
+            text-align: center;
+            background-color:#A52A2A;
+
+           }
+ 
+         
+         
+
+        
+</style>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <h1 class="navbar-brand" >Movie Recommender System</h1>
+      
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            &nbsp; 
+            &nbsp; 
+            <a class="nav-link" href="register/">SignUp</a>
+            &nbsp; 
+            &nbsp;
+            <a class="nav-link" href="login/">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+    
+<h1> Welcome to Movie Recommendation System!</h1>
+<div class ="infoDiv">
+    
+</div>
+<br>
+<div align="center">
+    <datalist id="suggestions">
+        {% for movie in movie_list %}
+        <option>{{ movie }}</option>
+        {% endfor %}
+    </datalist>
+
+<form method="POST">
+    {% csrf_token %}
+    <input  autoComplete="on" list="suggestions"  size="40" name="selectedMovie" value="{{ movieValue }}">
+    <br>
+    <br>
+    <button type="submit" name="selectMovie">Get Recommended Movies!</button>
+</form>
+</div>
+<br>
+<div id="MovieList" align='center'>
+    {{recommended_moviesHTML|safe}}
+</div>
+
+<footer class="page-footer font-small">
+    <hr>
+    <a> FINAL YEAR ENTC GROUP NO-7</a>
+    <hr>
+</div>
+
+
+</footer>
+
+</body>
+</html>
